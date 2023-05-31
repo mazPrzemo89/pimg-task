@@ -1,0 +1,1 @@
+type ImageFormat = "jpeg" | "png" | "webp" | "avif" | "tiff" | "gif"
