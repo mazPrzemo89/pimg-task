@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { GetObjectCommand } from "@aws-sdk/client-s3";
 import sharp from "sharp";
 import { client } from "../config";
-import { DownloadQuery, DownloadResult, ImageFormat } from "../interfaces";
+import { DownloadQuery, DownloadResult, EndpointType, ImageFormat } from "../interfaces";
 import { validateDonwloadQuery, validateImageFormat } from "../validators/validators";
 import {  imageFormatErrorMessage } from "../errors/errors";
 
@@ -63,7 +63,7 @@ router.post("/download/:id", async (req: Request, res: Response) => {
     return res.status(400).send(error);
   }
 
-  if (!validateImageFormat(contentType)) {
+  if (!validateImageFormat(contentType, EndpointType.download)) {
     return res
       .status(400)
       .send(imageFormatErrorMessage);
