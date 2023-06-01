@@ -3,6 +3,7 @@
         "esModuleInterop": true,
         "resolveJsonModule": true,
         "experimentalDecorators": true,
+        "useUnknownInCatchVariables": false,
         "module": "CommonJS",
         "moduleResolution": "node",
         "outDir": "./dist",
