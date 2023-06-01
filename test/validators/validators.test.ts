@@ -1,24 +1,19 @@
+import { EndpointType } from "../../src/interfaces";
 import {
   validateImageFormat,
   validateDonwloadQuery,
 } from "../../src/validators/validators";
 
-export interface DownloadQuery {
-  formatToConvert: string;
-  widthToConvert: undefined | number;
-  heightToConvert: undefined | number;
-}
-
 describe("validators test suite", () => {
   test("if validateImageFormat returns false when given invalid input", () => {
     const invalidFilename = "test.exe";
-    const result = validateImageFormat(invalidFilename);
+    const result = validateImageFormat(invalidFilename, EndpointType.upload);
     expect(result).toBeFalsy();
   });
 
   test("if validateImageFormat returns true when given valid input", () => {
     const validFilename = "test.png";
-    const result = validateImageFormat(validFilename);
+    const result = validateImageFormat(validFilename, EndpointType.download);
     expect(result).toBeTruthy();
   });
 
