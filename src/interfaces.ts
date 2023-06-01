@@ -1,1 +1,1 @@
-type ImageFormat = "jpeg" | "png" | "webp" | "avif" | "tiff" | "gif"
+export type ImageFormat = "jpeg" | "png" | "webp" | "avif" | "tiff" | "gif"
