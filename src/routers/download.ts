@@ -3,7 +3,7 @@ import { GetObjectCommand } from "@aws-sdk/client-s3";
 import sharp from "sharp";
 import { client } from "../config";
 import { DownloadQuery, DownloadResult, ImageFormat } from "../interfaces";
-import { validateDonwloadQuery, validateImageFormat } from "../utils/utils";
+import { validateDonwloadQuery, validateImageFormat } from "../validators/validators";
 import {  imageFormatErrorMessage } from "../errors/errors";
 
 export const router = express.Router();
@@ -35,11 +35,11 @@ const main = async (Key: string): Promise<DownloadResult> => {
 
 router.post("/download/:id", async (req: Request, res: Response) => {
   const imageId = req.params.id;
-  let query: DownloadQuery
+  let query: DownloadQuery;
   try{
-    query = validateDonwloadQuery(req)
+    query = validateDonwloadQuery(req);
   } catch (error){
-    return res.status(400).send(error.message)
+    return res.status(400).send(error.message);
   }
 
   const format = query.formatToConvert;
@@ -74,8 +74,7 @@ router.post("/download/:id", async (req: Request, res: Response) => {
     .resize(width, height, {
       fit: sharp.fit.outside,
       withoutReduction: true,
-    })
-    [`${contentType as ImageFormat}`]()
+    })[`${contentType as ImageFormat}`]()
     .toBuffer();
 
   res.set("Content-Type", `image/${contentType}`);
