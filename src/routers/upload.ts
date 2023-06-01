@@ -2,12 +2,9 @@ import express, { Request, Response, NextFunction } from "express";
 import sharp from 'sharp'
 import { v4 as uuidv4 } from 'uuid';
 import { upload, s3 } from '../config';
-
 import { ManagedUpload } from "aws-sdk/clients/s3";
-import { ImageFormat } from "../interfaces";
 
 export const router  = express.Router();
-
 
 router.post('/upload', upload.single('upload'), async (req: Request, res: Response) => {
 
