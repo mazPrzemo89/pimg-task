@@ -13,18 +13,18 @@ export function validateDonwloadQuery(req: Request): DownloadQuery {
     const width = req.query.width as string;
     const height = req.query.height as string;
 
-    if(!validateImageFormat(format)){
+    if(format && !validateImageFormat(format)){
         throw new Error(imageFormatErrorMessage)
     }
 
-    if(!width.match(/[0-9]/) || height && !height.match(/[0-9]/)){
+    if(width && !width.match(/[0-9]/) || height && !height.match(/[0-9]/)){
         throw new Error(invalidDimensionsError)
     }
 
     return {
         formatToConvert: format,
-        widthToConvert: parseInt(width),
-        heightToConvert:  parseInt(height)
+        widthToConvert: width ? parseInt(width) : undefined,
+        heightToConvert: height ? parseInt(height) : undefined
     }
     
 }

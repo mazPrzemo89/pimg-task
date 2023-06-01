@@ -22,7 +22,10 @@ const main = async (Key: string): Promise<DownloadResult> => {
       throw "empty response";
     }
     result = await response.Body.transformToString("base64");
-    contentType = response.ContentType?.split("/")[1];
+    if(response.ContentType){
+      contentType = response.ContentType.split("/")[1];
+    }
+    
   } catch (err) {
     console.error(err);
     throw "error downloading file";
