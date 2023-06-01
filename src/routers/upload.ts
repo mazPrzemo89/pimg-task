@@ -17,7 +17,7 @@ const upload = multer({
   }
 })
 
-  router.post('/upload-s3', upload.single('upload'), async (req: Request, res: Response) => {  
+  router.post('/uploadS3', upload.single('upload'), async (req: Request, res: Response) => {  
     if(!req.file){
       return res.status(400).send(noFileError);
     }
