@@ -5,6 +5,7 @@ import { s3 } from '../config';
 import { ManagedUpload } from "aws-sdk/clients/s3";
 import { validateImageFormat } from "../validators/validators";
 import { imageFormatErrorMessage, noFileError } from "../errors/errors";
+import { EndpointType } from "../interfaces";
 
 export const router  = express.Router();
 
@@ -21,7 +22,7 @@ const upload = multer({
     if(!req.file){
       return res.status(400).send(noFileError);
     }
-    if (!validateImageFormat(req.file.originalname)){
+    if (!validateImageFormat(req.file.originalname, EndpointType.upload)){
       return res.status(400).send(imageFormatErrorMessage);
     }
 
