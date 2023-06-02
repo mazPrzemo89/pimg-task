@@ -59,6 +59,8 @@ This script will use jest library to run all the unit tests found in root/test d
 
 This script will use eslint library make sure the code is compliant with the rules set in .eslintrc.json file.
 
+``` npm run lint ```
+
 ---
 
 ## Endpoints
